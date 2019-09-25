@@ -30,20 +30,15 @@ func mostFrequentlyOccurringChar(in str: String) -> Character {
 // Find the first indicies whose values sum to a given number
 
 func pairSum(arr: [Int], target: Int) -> (Int, Int) {
-//    var myDict = [Int:Int]()
-//
-//    for (index, int) in arr.enumerated() {
-//        myDict[index] = int
-//    }
-//
-//    for (index1, int1) in myDict {
-//        for (index2, int2) in myDict {
-//            if int1 + int2 == target {
-//                return (index1, index2)
-//            }
-//        }
-//    }
-    
+    var myDict = [Int:Int]()
+
+    for (index1, num1) in arr.enumerated() {
+        let num2 = target - num1
+        if let index2 = myDict[num2] {
+            return (index2, index1)
+        }
+        myDict[num1] = index1
+    }
     return (0,0)
 }
 
