@@ -127,14 +127,64 @@ func containsDuplicates(arr: [Int]) -> Bool {
 // Find all values that appear exactly once in a given array of Strings
 
 func uniqueValues(in arr: [String]) -> [String] {
+    var myDict = [String:Int]()
     
+    for str in arr {
+        if myDict[str] == nil {
+            myDict[str] = 1
+        } else {
+            myDict[str]! += 1
+        }
+    }
     
-    return []
+    var answer = [String]()
+    
+    for (str, count) in myDict {
+        if count == 1 {
+            answer.append(str)
+        }
+    }
+    return answer
 }
 
 // Sort a given array by how often each term appears
 
 func sortByFrequency(arr: [Int]) -> [Int] {
-    return []
+    guard !arr.isEmpty else { return [] }
+
+    var myDict = [Int:Int]()
+    var answer = [Int]()
+    
+    for int in arr {
+        if myDict[int] == nil {
+            myDict[int] = 1
+        } else {
+            myDict[int]! += 1
+        }
+    }
+    
+    while myDict.count > 0 {
+        var countKey: Int?
+        var count: Int = 0
+        
+        for (int, freq) in myDict {
+            if freq > count {
+                count = freq
+                countKey = int
+            }
+        }
+        
+        let range = 1...count
+        
+        for _ in range {
+            answer.append(countKey!)
+        }
+        
+        myDict.removeValue(forKey: countKey!)
+        
+        countKey = nil
+        count = 0
+    }
+   return answer
 }
 
