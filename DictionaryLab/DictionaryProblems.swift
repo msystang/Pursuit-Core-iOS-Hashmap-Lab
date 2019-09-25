@@ -24,7 +24,6 @@ func mostFrequentlyOccurringChar(in str: String) -> Character {
             largestValueKey = key
         }
     }
-    
     return largestValueKey
 }
 
@@ -105,12 +104,31 @@ func canConstruct(note: String, from originalLetters: String) -> Bool {
 // Return whether or not an input array contains duplicates
 
 func containsDuplicates(arr: [Int]) -> Bool {
+    guard !arr.isEmpty else {return false}
+    
+    var myDict = [Int:Int]()
+    
+    for num in arr {
+        if myDict[num] == nil {
+            myDict[num] = 1
+        } else {
+            myDict[num]! += 1
+        }
+    }
+    
+    for (_, count) in myDict {
+        if count > 1 {
+            return true
+        }
+    }
     return false
 }
 
 // Find all values that appear exactly once in a given array of Strings
 
 func uniqueValues(in arr: [String]) -> [String] {
+    
+    
     return []
 }
 
