@@ -31,13 +31,60 @@ func mostFrequentlyOccurringChar(in str: String) -> Character {
 // Find the first indicies whose values sum to a given number
 
 func pairSum(arr: [Int], target: Int) -> (Int, Int) {
-    return (0, 0)
+//    var myDict = [Int:Int]()
+//
+//    for (index, int) in arr.enumerated() {
+//        myDict[index] = int
+//    }
+//
+//    for (index1, int1) in myDict {
+//        for (index2, int2) in myDict {
+//            if int1 + int2 == target {
+//                return (index1, index2)
+//            }
+//        }
+//    }
+    
+    return (0,0)
 }
 
 // Find the second most frequently occurring character in a given string
 
 func secondMostFrequentlyOccurringChar(in str: String) -> Character {
-    return "b"
+    var myDict = [Character:Int]()
+    
+    for char in str {
+        if myDict.keys.contains(char) {
+            if let oldValue = myDict[char] {
+                myDict[char] = oldValue + 1
+            }
+        } else {
+            myDict[char] = 1
+        }
+    }
+    
+    var largestValueKey: Character = "a"
+    var largestValue = 0
+    
+    for (key, value) in myDict {
+        if value > largestValue {
+            largestValue = value
+            largestValueKey = key
+        }
+    }
+    
+    myDict[largestValueKey] = nil
+    
+    var secondLargestKey: Character = "b"
+    var secondLargestValue = 0
+    
+    for (key, value) in myDict {
+        if value > secondLargestValue {
+            secondLargestValue = value
+            secondLargestKey = key
+        }
+    }
+    return secondLargestKey
 }
 
 // https://leetcode.com/problems/ransom-note/
