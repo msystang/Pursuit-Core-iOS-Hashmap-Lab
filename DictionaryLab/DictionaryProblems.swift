@@ -141,24 +141,20 @@ func containsDuplicates(arr: [Int]) -> Bool {
 // Find all values that appear exactly once in a given array of Strings
 
 func uniqueValues(in arr: [String]) -> [String] {
+    guard !arr.isEmpty else { return [] }
+    
     var myDict = [String:Int]()
+    var answer = [String]()
     
     for str in arr {
         if myDict[str] == nil {
-            myDict[str] = 1
-        } else {
-            myDict[str]! += 1
-        }
-    }
-    
-    var answer = [String]()
-    
-    for (str, count) in myDict {
-        if count == 1 {
             answer.append(str)
+            myDict[str] = 1
         }
     }
+    
     return answer
+    
 }
 
 // Sort a given array by how often each term appears
